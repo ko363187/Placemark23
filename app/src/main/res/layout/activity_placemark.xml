@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="org.wit.placemark.activities.PlacemarkActivity">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appBarLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorAccent"
+      android:fitsSystemWindows="true"
+      app:elevation="0dip"
+      app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+      <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/colorPrimary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/appBarLayout"
+      android:fillViewport="true">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+          <EditText
+              android:id="@+id/placemarkTitle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:layout_margin="8dp"
+              android:autofillHints=""
+              android:hint="@string/hint_placemarkTitle"
+              android:inputType="text"
+              android:maxLength="25"
+              android:maxLines="1"
+              android:padding="10dp"
+              android:layout_gravity="center"
+              android:textColor="@color/colorPrimaryDark"
+              android:textSize="14sp" />
+
+          <CheckBox
+              android:id="@+id/checkbox_favourite_placemark"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:layout_gravity="center"
+              android:text="Favourite"
+              />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          <EditText
+              android:id="@+id/placemarkTownland"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:layout_margin="8dp"
+              android:autofillHints=""
+              android:hint="Townland"
+              android:inputType="text"
+              android:maxLength="25"
+              android:maxLines="1"
+              android:padding="8dp"
+              android:textColor="@color/colorPrimaryDark"
+              android:textSize="14sp" />
+          <EditText
+              android:id="@+id/placemarkCountry"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:layout_margin="8dp"
+              android:autofillHints=""
+              android:hint="Country"
+              android:inputType="text"
+              android:maxLength="25"
+              android:maxLines="1"
+              android:padding="8dp"
+              android:textColor="@color/colorPrimaryDark"
+              android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          android:orientation="horizontal">
+        <EditText
+            android:id="@+id/placemarkDate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:autofillHints=""
+            android:hint="Date"
+            android:inputType="none"
+            android:focusable="false"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+        <CheckBox
+            android:id="@+id/checkbox_visited"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Visited"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+        </LinearLayout>
+        <EditText
+          android:id="@+id/description"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:hint="@string/hint_placemarkDescription"
+          android:inputType="text"
+          android:maxLength="25"
+          android:maxLines="1"
+          android:padding="8dp"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="14sp"/>
+        <EditText
+            android:id="@+id/placemarkNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:autofillHints=""
+            android:hint="Notes"
+            android:inputType="text"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+        <Button
+          android:id="@+id/chooseImage"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="16dp"
+          android:background="@color/colorAccent"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          android:text="@string/button_addImage"
+          android:textColor="@color/colorPrimary"
+          android:textSize="16sp"/>
+
+        <ImageView
+          android:id="@+id/placemarkImage"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:srcCompat="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          <EditText
+              android:id="@+id/placemarkLatitude"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:layout_margin="8dp"
+              android:autofillHints=""
+              android:hint="Latitude"
+              android:inputType="numberDecimal"
+              android:maxLength="10"
+              android:maxLines="1"
+              android:layout_gravity="center"
+              android:padding="8dp"
+              android:textColor="@color/colorPrimaryDark"
+              android:textSize="14sp" />
+          <EditText
+              android:id="@+id/placemarkLongitude"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:layout_margin="8dp"
+              android:autofillHints=""
+              android:hint="Longitude"
+              android:inputType="numberDecimal"
+              android:maxLength="10"
+              android:maxLines="1"
+              android:layout_gravity="center"
+              android:padding="8dp"
+              android:textColor="@color/colorPrimaryDark"
+              android:textSize="14sp" />
+          <Button
+              android:id="@+id/placemarkLocation"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:layout_margin="16dp"
+              android:background="@color/colorAccent"
+              android:paddingBottom="8dp"
+              android:paddingTop="8dp"
+              android:stateListAnimator="@null"
+              android:text="@string/button_location"
+              android:textColor="@color/colorPrimary"
+              android:textSize="16sp"/>
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+          android:layout_marginStart="10dp"
+          android:layout_marginEnd="10dp"/>
+
+        <RatingBar
+            android:layout_gravity="center"
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="2"
+            android:stepSize="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <Button
+          android:id="@+id/btnAdd"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="16dp"
+          android:background="@color/colorAccent"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp"
+          android:stateListAnimator="@null"
+          android:text="@string/button_addPlacemark"
+          android:textColor="@color/colorPrimary"
+          android:textSize="16sp" />
+      </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+  </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
