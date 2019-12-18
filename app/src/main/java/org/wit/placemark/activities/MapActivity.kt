@@ -31,7 +31,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
         mapFragment.getMapAsync(this)
     }
 
-
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+        map.setOnMarkerDragListener(this)
+        val loc = LatLng(location.lat, location.lng)
+        val options = MarkerOptions()
+            .title("Placemark")
+            .snippet("GPS : " + loc.toString())
+            .draggable(true)
+            .position(loc)
+        map.addMarker(options)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+    }
 
     override fun onMarkerDragStart(marker: Marker) {
     }
