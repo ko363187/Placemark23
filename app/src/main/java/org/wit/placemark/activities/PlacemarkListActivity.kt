@@ -92,5 +92,59 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener,SharePlacem
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 
+    // it call all the data which is there in firebase database with reference "Placemark"
+    private fun getPlacemarkListFromFirebase(){
+
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                placemarks.clear()
+                for (dataSnapshot in snapshot.getChildren()) {
+                    dataSnapshot.getValue(placemark::class.java)?.let { placemarks.add(it) }
+                    dataSnapshot.getValue(placemark::class.java)?.let { placemarksFilter.add(it) }
+                }
+                setAdapter()
+
+                //Log.d(FragmentActivity.TAG, "Value is: " + value!!)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                //Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
+            }
+        })
+    }
+
+    private fun setAdapter(){
+        placemarkAdapter = PlacemarkAdapter(placemarks, this,this)
+        recyclerView.adapter = placemarkAdapter
+
+    }
+
+
+
+    private fun setFilter(text: String) {
+        placemarks.clear()
+        for (item in placemarksFilter){
+            if (item.title.contains(text)){
+                placemarks.add(item)
+            }
+        }
+
+        placemarkAdapter.notifyDataSetChanged()
+    }
+
+    override fun onShareClick(placemark: PlacemarkModel) {
+        val email = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","",null))
+        email.putExtra(Intent.EXTRA_EMAIL,"")
+        email.putExtra(Intent.EXTRA_SUBJECT, "Placemark")
+        email.putExtra(Intent.EXTRA_TEXT, placemark)
+        startActivity(Intent.createChooser(email, "Send result"))
+    }
 }
